@@ -12,7 +12,12 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONPATH=/usr/src/app
 
-# add install & requirments.text
+# install system dependencies
+RUN apt-get update \
+  && apt-get -y install netcat-traditional gcc postgresql \
+  && apt-get clean
+
+  # add install & requirments.text
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
@@ -20,6 +25,7 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-# run server 
+# add entrypoint.sh
 
-CMD python manage.py run -h 0.0.0.0
+COPY ./entrypoint.sh .
+RUN chmod +x /usr/src/app/entrypoint.sh
