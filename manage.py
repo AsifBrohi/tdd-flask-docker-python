@@ -1,5 +1,5 @@
+import sys
 from flask.cli import FlaskGroup
-
 from src import app
 
 cli=FlaskGroup(app)
