@@ -6,4 +6,4 @@ def test_ping(test_app):
     data = json.loads(resp.data.decode())
     assert resp.status_code == 200
     assert 'pong' in data['message']
-    assert 'sucess' in data['status']
+    assert 'success' in data['status']
